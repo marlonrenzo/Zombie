@@ -1,0 +1,21 @@
+img{
+    position: absolute;
+    height: 200px;
+    width: 100px;
+}
+h1{
+    font-family: "Verdana";
+    color: orange;
+    text-align: center;
+}
+button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color:blue;
+    font-size: 24px;
+    padding: 50px 100px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
