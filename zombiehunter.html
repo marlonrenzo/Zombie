@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <style>
+            img{
+                position: absolute;
+                height: 200px;
+                width: 100px;
+            }
+            h1{
+                font-family: "Verdana";
+                color: orange;
+                text-align: center;
+            }
+            button{
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background-color:blue;
+                font-size: 24px;
+                padding: 50px 100px;
+                color: white;
+                text-align: center;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Score:<span id="score">0</span></h1>
+        <img id="zombie" src="zombie.png" onclick=killZombie()>
+        <button id="reset" onclick=reset()>Reset</button>
+        <script>
+            function generateRandom(a, b){
+                if(a < b){
+                    return Math.floor(Math.random() * (b + 1));
+                } else {
+                    return Math.floor(Math.random() * (a + 1));
+                }
+            }
+            function updateScore(){
+                score++;
+                document.getElementById("score").innerHTML = score;
+            }
+            function changePosition(image){
+                let width = window.innerWidth - 150;
+                let height = window.innerHeight - 150;
+
+                randomXPos = generateRandom(0, width);
+                randomYPos = generateRandom(0, height);
+
+                document.getElementById(image).style.left = randomXPos;
+                document.getElementById(image).style.top = randomYPos;
+            }
+            function killZombie(){
+                document.getElementById("zombie").src = "zombiedeath.gif";
+                updateScore();
+                zombieSound.play();
+            }
+            function reset(){
+                score = 0
+                document.getElementById("score").innerHTML = score;
+            }
+
+            document.getElementById("")
+            let zombieSound = new Audio("zombiehit.mp3");
+            let score = 0;
+            setInterval(function(){changePosition("zombie");document.getElementById("zombie").src = "zombie.png";}, 2000);
+
+        </script>
+    </body>
+</html>
