@@ -3,11 +3,13 @@ img{
     height: 200px;
     width: 100px;
 }
+
 h1{
     font-family: "Verdana";
     color: orange;
     text-align: center;
 }
+
 button{
     position: absolute;
     top: 20px;
