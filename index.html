@@ -20,9 +20,6 @@
                 document.getElementById("score").innerHTML = score;
             }
             function changePosition(image){
-                let width = window.innerWidth - 150;
-                let height = window.innerHeight - 150;
-
                 randomXPos = generateRandom(0, width);
                 randomYPos = generateRandom(0, height);
 
@@ -37,9 +34,13 @@
             function reset(){
                 score = 0
                 document.getElementById("score").innerHTML = score;
+                document.getElementById("zombie.png").style.left = width / 2;
+                document.getElementById("zombie.png").style.top = height / 2;
             }
 
             document.getElementById("")
+            let width = window.innerWidth - 150;
+            let height = window.innerHeight - 150;
             let zombieSound = new Audio("zombiehit.mp3");
             let score = 0;
             setInterval(function(){changePosition("zombie");document.getElementById("zombie").src = "zombie.png";}, 2000);
