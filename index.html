@@ -1,11 +1,12 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="zombie.css">
+        <link rel="stylesheet" type="text/css" href="css/zombie.css">
     </head>
 
     <body>
         <h1>Score:<span id="score">0</span></h1>
-        <img id="zombie" src="zombie.png" onclick=killZombie()>
+        <img id="zombie" src="zombie.png" onclick=killZombie("zombie")>
+        <img id="zombie2" src="zombie.png" onclick=killZombie("zombie2")>
         <button id="reset" onclick=reset()>Reset</button>
         <script>
             function generateRandom(a, b){
@@ -26,8 +27,8 @@
                 document.getElementById(image).style.left = randomXPos;
                 document.getElementById(image).style.top = randomYPos;
             }
-            function killZombie(){
-                document.getElementById("zombie").src = "zombiedeath.gif";
+            function killZombie(image){
+                document.getElementById(image).src = "zombiedeath.gif";
                 updateScore();
                 zombieSound.play();
             }
@@ -36,6 +37,8 @@
                 document.getElementById("score").innerHTML = score;
                 document.getElementById("zombie").style.left = width / 2;
                 document.getElementById("zombie").style.top = height / 2;
+                document.getElementById("zombie2").style.left = width / 2;
+                document.getElementById("zombie2").style.top = height / 2;
             }
             
             let width = window.innerWidth - 150;
@@ -43,6 +46,7 @@
             let zombieSound = new Audio("zombiehit.mp3");
             let score = 0;
             setInterval(function(){changePosition("zombie");document.getElementById("zombie").src = "zombie.png";}, 2000);
+            setInterval(function(){changePosition("zombie2");document.getElementById("zombie2").src = "zombie.png";}, 2000);
 
         </script>
     </body>
