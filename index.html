@@ -5,10 +5,11 @@
 
     <body>
         <h1>Score:<span id="score">0</span></h1>
-        <img id="zombie" src="zombie.png" onclick=killZombie("zombie")>
-        <img id="zombie2" src="zombie.png" onclick=killZombie("zombie2")>
+        <img id="zombie" src="zombie.png" onclick=killZombieOne()>
+        <img id="zombie2" src="zombie.png" onclick=killZombieTwo()>
         <button id="reset" onclick=reset()>Reset</button>
         <script>
+            
             function generateRandom(a, b){
                 if(a < b){
                     return Math.floor(Math.random() * (b + 1));
@@ -27,26 +28,54 @@
                 document.getElementById(image).style.left = randomXPos;
                 document.getElementById(image).style.top = randomYPos;
             }
-            function killZombie(image){
-                document.getElementById(image).src = "zombiedeath.gif";
+
+            function killZombieOne(){
+                if(clickedOne){
+                    return;
+                }
                 updateScore();
-                zombieSound.play();
+                explodeZombie("zombie");
+                clickedOne = true;
+                
+                setTimeout(function(){clickedOne = false;}, 1000);
             }
+            function killZombieTwo(){
+                if(clickedTwo){
+                    return;
+                }
+                updateScore();
+                explodeZombie("zombie2");
+                clickedTwo = true;
+                
+                setTimeout(function(){clickedTwo = false;}, 750);
+            }
+
+            function explodeZombie(image){
+                let zombieSound = new Audio("zombiehit.mp3");
+                zombieSound.play();
+                document.getElementById(image).src = "zombiedeath.gif";
+            }
+
             function reset(){
                 score = 0;
                 document.getElementById("score").innerHTML = score;
-                document.getElementById("zombie").style.left = width / 2;
-                document.getElementById("zombie").style.top = height / 2;
-                document.getElementById("zombie2").style.left = width / 2;
-                document.getElementById("zombie2").style.top = height / 2;
+                document.getElementById("zombie").style.left = width / 2 + 50;
+                document.getElementById("zombie").style.top = height / 2 + 50;
+                document.getElementById("zombie2").style.left = width / 2 - 50;
+                document.getElementById("zombie2").style.top = height / 2 - 50;
             }
             
+            let clickedOne = false;
+            let clickedTwo = false;
             let width = window.innerWidth - 150;
             let height = window.innerHeight - 150;
-            let zombieSound = new Audio("zombiehit.mp3");
+            changePosition("zombie");
+            changePosition("zombie2");
             let score = 0;
             setInterval(function(){changePosition("zombie");document.getElementById("zombie").src = "zombie.png";}, 2000);
             setInterval(function(){changePosition("zombie2");document.getElementById("zombie2").src = "zombie.png";}, 2000);
+
         </script>
     </body>
 </html>
+
